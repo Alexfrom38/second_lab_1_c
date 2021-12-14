@@ -35,10 +35,9 @@ int main(void)
 	while (q != 0)
 	{
 		printf("0 - exit \n");
-	//	printf("1 - input random array in file \n");
-		//printf("2 - input array from keyboard \n");
+
 		printf("1 - read array from file \n");
-	//	printf("4 - get random array \n");
+	
 		printf("2 - show array \n");
 		printf("3 - reset array value \n");
 		printf("4 - sort array  \n");
@@ -52,9 +51,9 @@ int main(void)
 			break;
 			///////////////////////////////////////////////////////////////////////////////////////////
 		case 1:
-			//temporary_array = read(name);
+			
 			current_array = read(name);
-			if (current_array == 0) return 0;
+			
 			size = get_size(current_array);
 			temporary_array = (float*)malloc(size * sizeof(float));
 			for (int i = 0; i < size; i++)
@@ -83,31 +82,52 @@ int main(void)
 			break;
 
 		case 4:
-			t1 = clock();
-			buble_sort(current_array, size);
-			t2 = clock();
-			printf("time for buble_sort: %lf", (((double)(t2 - t1)) / CLOCKS_PER_SEC));
+			printf("what sorting ?\n");
 
-			for (int i = 0; i < size; i++)
+			printf("0 - buble sorting \n");
+
+			printf("1 - insert sorting \n");
+
+			printf("2 - quick sorting \n");
+
+			scanf_s("%d", &q);
+
+			switch (q)
 			{
-				current_array[i] = temporary_array[i];
+			case 0:
+
+				t1 = clock();
+				buble_sort(current_array, size);
+				t2 = clock();
+				printf("time for buble_sort: %lf", (((double)(t2 - t1)) / CLOCKS_PER_SEC));
+				q = 99;
+				break;
+
+			case 1:
+
+				t1 = clock();
+				InserSort(current_array, size);
+				t2 = clock();
+				printf("time for insert_sort: %lf", (((double)(t2 - t1)) / CLOCKS_PER_SEC));
+
+				break;
+
+			case 2:
+
+				t1 = clock();
+				QuickSort(current_array, size);
+
+				t2 = clock();
+				printf("time for quickSorting: %lf", (((double)(t2 - t1)) / CLOCKS_PER_SEC));
+
+				break;
+
+			default:
+				printf("invalid input \n");
+				break;
 			}
 
-			t1 = clock();
-			InserSort(current_array, size);
-			t2 = clock();
-			printf("time for insert_sort: %lf", (((double)(t2 - t1)) / CLOCKS_PER_SEC));
-
-			for (int i = 0; i < size; i++)
-			{
-				current_array[i] = temporary_array[i];
-			}
-
-			t1 = clock();
-			QuickSort(current_array, size);
 		
-			t2 = clock();
-			printf("time for buble_sort: %lf", (((double)(t2 - t1)) / CLOCKS_PER_SEC));
 
 			break;
 			///////////////////////////////////////////////////////////////////////////////////////////
@@ -125,9 +145,9 @@ int main(void)
 		}
 
 	}
-	free(current_array);
-	free(temporary_array);
+
 	return 0;
 	
 }
+
 
