@@ -125,7 +125,8 @@ int main(void)
 		}
 
 	}
-
+	free(current_array);
+	free(temporary_array);
 	return 0;
 	
 }
